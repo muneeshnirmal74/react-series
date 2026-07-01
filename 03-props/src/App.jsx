@@ -90,8 +90,8 @@ const jobOpenings = [
   return (
     <>
       <div class="parent">
-        {jobOpenings.map((e, chacha) => {
-          return <Card  logo={e.brandLogo} name={e.companyName} datepost={e.datePosted} post={e.post} tag1={e.tag1} tag2={e.tag2} pay={e.pay} location={e.location} />;
+        {jobOpenings.map((e, key) => {
+          return <Card key={key} logo={e.brandLogo} name={e.companyName} datepost={e.datePosted} post={e.post} tag1={e.tag1} tag2={e.tag2} pay={e.pay} location={e.location} />;
         })}
       </div>
     </>
