@@ -1,13 +1,13 @@
 import React from "react";
-import Section1 from "./section1";
-import Section2 from "./Section2";
+import Section1 from "../components/Section1.jsx";
+import Section2 from "../components/Section2.jsx";
 
-function CardSection() {
+function CardSection(props) {
   return (
     <>
       <div className="cardsection flex gap-10">
-        <Section1 />
-        <Section2 />
+        <Section1  />
+        <Section2 username={props.username} />
       </div>
     </>
   );

@@ -2,12 +2,12 @@ import React from "react";
 import Nav from "./Nav";
 import CardSection from "../components/CardSection";
 
-function Parent() {
+function Parent(props) {
   return (
     <>
-      <div className="parent bg-white width-full p-20 br-10 rounded-[10px] w-[90%] mx-auto">
+      <div className="parent bg-white w-full p-20 br-10 rounded-[10px]  mx-auto">
         <Nav />
-        <CardSection />
+        <CardSection username={props.username}  />
       </div>
     </>
   );
