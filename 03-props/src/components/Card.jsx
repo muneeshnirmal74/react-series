@@ -21,11 +21,6 @@ function Card(props) {
         </div>
         <button className='apply-btn'>Apply Now</button>
       </div>
-
-        {/* <img src={props.img} alt={props.name} />
-        <h2>{props.name}</h2>
-        <p>Age: {props.age}</p>
-        <p> {props.Occupation}</p> */}
     </div>
   )
 }
