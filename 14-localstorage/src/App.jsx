@@ -9,7 +9,8 @@ function App() {
 
   // localStorage.removeItem("Mukesh");
 
-  // obj ke bhejne ke liye json.s
+  // obj ko bhejne ke liye JSON.stringify()
+  // obj ko View karne ke liye JSON.stringify()
 
   const user = {
     name: "Muneesh",
