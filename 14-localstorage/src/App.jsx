@@ -26,7 +26,7 @@ function App() {
   const usera = JSON.parse(localStorage.getItem("user"));
   console.log(usera);
 
-  return <div>Hello</div>;
+  return <div>Hello </div>;
 }
 
 export default App;
