@@ -4,24 +4,19 @@ import axios from "axios";
 function App() {
   const [pname, setPname] = useState([]);
   const [pnameFiltter, setPnameFiltter] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [search, setsearch] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function getData() {
       try {
         const res = await axios.get("https://fakestoreapi.com/products");
-
-        // Axios ke saath use nahi hota h
-        // if (!res.ok) {
-        //   throw new Error("Failed To Fetch");
-        // }
-
         const newData = res.data;
         setPname(newData);
         setPnameFiltter(newData);
       } catch (error) {
-        setError("Failed to fetch products.");
+        setError("API Not Fetched");
       } finally {
         setLoading(false);
       }
@@ -30,29 +25,30 @@ function App() {
     getData();
   }, []);
 
-  function inputChange(e) {
-    const inputvalue = e.target.value.toLowerCase();
+  function inputfunction(e) {
+    const inputValue = e.target.value.toLowerCase();
+    setsearch(inputValue);
 
     setPnameFiltter(
       pname.filter(
         (product) =>
-          product.title.toLowerCase().includes(inputvalue) ||
-          product.description.toLowerCase().includes(inputvalue) ||
-          product.price.toString().includes(inputvalue),
+          product.title.toLowerCase().includes(inputValue) ||
+          product.price.toString().includes(inputValue),
       ),
     );
   }
 
   if (loading) {
-    return <h2>Products are loading...</h2>;
+    return <h1>Product Is Loading......</h1>;
   }
+
   if (error) {
-    return <h2>{error}</h2>;
+    return <h1>{error}</h1>;
   }
 
   return (
     <>
-      <input type="text" placeholder="Search Product" onChange={inputChange} />
+      <input value={search} onChange={inputfunction} />
       <div
         style={{
           display: "grid",
@@ -67,15 +63,9 @@ function App() {
                 key={val.id}
                 style={{ flex: "1", background: "#e2e2e2", padding: "30px" }}
               >
-                <h4>{val.category}</h4>
                 <img src={val.image} style={{ width: "100%" }} />
                 <h1>{val.title}</h1>
                 <h3>{val.price}</h3>
-                <p>{val.description}</p>
-                <p>
-                  <span>{val.rating.rate}</span>
-                  <span>{val.rating.count}</span>
-                </p>
               </div>
             );
           })
