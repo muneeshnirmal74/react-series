@@ -6,7 +6,7 @@ function App() {
   const [product, setProduct] = useState([]);
   const [filterProduct, setFilterProduct] = useState([]);
   const [text, setText] = useState("");
-  const [index, setIndex] = useState(1);
+  const [index, setIndex] = useState(3);
 
   async function getData() {
     // const responce = await axios.post(
@@ -19,6 +19,7 @@ function App() {
     );
 
     setProduct(responce.data);
+
     setFilterProduct(responce.data);
   }
 
@@ -28,8 +29,22 @@ function App() {
 
   let printUserData = "Loading....";
 
-  if (product.length > 0) {
-    printUserData = product.map((val, key) => {
+  function inputchnaging(e) {
+    e.preventDefault();
+    const Data = e.target.value.toLowerCase();
+    setText(Data);
+
+    setFilterProduct(
+      product.filter(
+        (productcard) =>
+          productcard.author.toLowerCase().includes(Data) ||
+          productcard.id.toString().includes(Data),
+      ),
+    );
+  }
+
+  if (filterProduct.length > 0) {
+    printUserData = filterProduct.map((val, key) => {
       return (
         <div key={key} className="text-white">
           <img
@@ -41,12 +56,6 @@ function App() {
         </div>
       );
     });
-  }
-
-  function inputchnaging(e) {
-    e.priventDefault();
-    const Data = e.target.value.toLowerCase();
-    setText(Data);
   }
 
   return (
